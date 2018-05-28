@@ -10,6 +10,9 @@
     "koa": "^2.5.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.73.0",
     "jest": "^23.0.1",
     "parcel-bundler": "^1.8.1"
   }
