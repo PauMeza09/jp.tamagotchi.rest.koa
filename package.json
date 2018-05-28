@@ -1,0 +1,16 @@
+{
+  "name": "jp.tamagotchi.rest.koa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pichardoJ/jp.tamagotchi.rest.koa.git",
+  "author": "<j.pichardo@tuta.io>",
+  "license": "unlicense",
+  "private": false,
+  "dependencies": {
+    "koa": "^2.5.1"
+  },
+  "devDependencies": {
+    "jest": "^23.0.1",
+    "parcel-bundler": "^1.8.1"
+  }
+}
