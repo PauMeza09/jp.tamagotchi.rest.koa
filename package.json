@@ -6,8 +6,15 @@
   "author": "<j.pichardo@tuta.io>",
   "license": "unlicense",
   "private": false,
+  "scripts": {
+    "start": "parcel src/index.js"
+  },
   "dependencies": {
-    "koa": "^2.5.1"
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mysql": "^2.15.0",
+    "openrecord": "^2.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
