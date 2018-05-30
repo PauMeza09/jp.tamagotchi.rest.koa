@@ -10,17 +10,17 @@
     "start": "parcel src/index.js"
   },
   "dependencies": {
+    "@types/node": "^10.1.3",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "mysql": "^2.15.0",
-    "openrecord": "^2.0.4"
+    "typeorm": "^0.2.6",
+    "typescript": "^2.8.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.73.0",
     "jest": "^23.0.1",
-    "parcel-bundler": "^1.8.1"
+    "parcel-bundler": "^1.8.1",
+    "tslint": "^5.10.0"
   }
 }
