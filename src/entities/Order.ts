@@ -3,7 +3,8 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToMany
+  OneToMany,
+  ObjectIdColumn
 } from 'typeorm';
 
 import { User } from './User';
@@ -11,13 +12,13 @@ import { OrderItem } from './OrderItem';
 
 @Entity()
 export class Order {
-  @PrimaryGeneratedColumn() public id: number;
+  @ObjectIdColumn() public id: number;
 
   @Column() public total: number;
 
-  @OneToMany(type => OrderItem, item => item.order)
+  @Column(type => OrderItem)
   public items: OrderItem[];
 
-  @ManyToOne(type => User, user => user.orders)
+  @Column(type => User)
   public user: User;
 }
