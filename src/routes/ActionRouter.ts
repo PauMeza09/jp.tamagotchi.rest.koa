@@ -6,6 +6,7 @@ import { ActionRepository } from '../repositories';
 
 export const ActionRouter = new KoaRouter({ prefix: 'action' })
   .use((ctx, next) => {
+    console.log('Here');
     ctx.repository = getCustomRepository(ActionRepository);
     next();
   })
