@@ -1,12 +1,6 @@
 import * as request from 'supertest';
 import * as koa from 'koa';
 
-import { ActionRepository } from '../../repositories/ActionRepository';
-
-jest.mock('../../repositories/ActionRepository.ts');
-
-ActionRepository.mockImplementation(() => fakeRepository);
-
 import { ActionRouter } from '../ActionRouter';
 
 const fakeRepository = {
@@ -20,24 +14,19 @@ const fakeRepository = {
   remove: jest.fn().mockResolvedValue({})
 };
 
-const sut = new koa();
-
-sut.use(ActionRouter.routes());
+const sut = new koa().use(ActionRouter(() => fakeRepository).routes());
 
 describe('Given ActionRouter', () => {
   describe(`when get('/')`, () => {
     let result;
 
     beforeAll(() => {
-      result = request(sut.callback()).get('action/');
+      result = request(sut.callback()).get('/action/');
+      return result;
     });
 
     test('it should return a list', () => {
-      result.expect(200, [{ id: 1 }]);
-    });
-
-    test('it should have called ActionRepository.find', () => {
-      expect(fakeRepository.findOne).toHaveBeenCalledTimes(1);
+      return result.expect(200, [{ id: 1 }]);
     });
   });
 
@@ -45,15 +34,12 @@ describe('Given ActionRouter', () => {
     let result;
 
     beforeAll(() => {
-      result = request(sut).get('action/1');
+      result = request(sut.callback()).get('/action/1');
+      return result;
     });
 
-    test('it should return an item', () => {
-      result.expect(200, { id: 1 });
-    });
-
-    test('it should have called ActionRepository.findOne', () => {
-      expect(fakeRepository.findOne).toHaveBeenCalledTimes(1);
+    it('it should return an item', () => {
+      return result.expect(200, { id: 1 });
     });
   });
 
@@ -61,17 +47,14 @@ describe('Given ActionRouter', () => {
     let result;
 
     beforeAll(() => {
-      result = request(sut)
-        .post('action/')
+      result = request(sut.callback())
+        .post('/action/')
         .send({ data: true });
+      return result;
     });
 
     test('it should return a created item', () => {
-      result.expect(200, { created: true });
-    });
-
-    test('it should have called ActionRepository.save', () => {
-      expect(fakeRepository.save).toHaveBeenCalledTimes(1);
+      return result.expect(200, { created: true });
     });
   });
 
@@ -79,17 +62,14 @@ describe('Given ActionRouter', () => {
     let result;
 
     beforeAll(() => {
-      result = request(sut)
-        .post('action/1')
+      result = request(sut.callback())
+        .put('/action/1')
         .send({ id: 1 });
+      return result;
     });
 
     test('it should return an updated item', () => {
-      result.expect(200, { updated: true });
-    });
-
-    test('it should have called ActionRepository.save', () => {
-      expect(fakeRepository.save).toHaveBeenCalledTimes(1);
+      return result.expect(200, { updated: true });
     });
   });
 
@@ -97,15 +77,12 @@ describe('Given ActionRouter', () => {
     let result;
 
     beforeAll(() => {
-      result = request(sut).delete('action/');
+      result = request(sut.callback()).delete('/action/1');
+      return result;
     });
 
     test('it should return an empty item', () => {
-      result.expect(200, {});
-    });
-
-    test('it should have called ActionRepository.remove', () => {
-      expect(fakeRepository.remove).toHaveBeenCalledTimes(1);
+      return result.expect(200);
     });
   });
 });

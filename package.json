@@ -7,7 +7,7 @@
   "license": "unlicense",
   "private": false,
   "scripts": {
-    "start": "parcel src/index.js"
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.test.ts' --exec 'ts-node' src/index.ts"
   },
   "dependencies": {
     "@types/koa-bodyparser": "^4.2.0",
@@ -23,6 +23,7 @@
     "mysql": "^2.15.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "ts-node": "^6.1.0",
     "typeorm": "^0.2.6",
     "typescript": "^2.8.3"
   },
@@ -30,9 +31,11 @@
     "@types/jest": "^23.0.0",
     "@types/supertest": "^2.0.4",
     "jest": "^23.1.0",
+    "nodemon": "^1.17.5",
     "parcel-bundler": "^1.8.1",
     "supertest": "^3.1.0",
     "ts-jest": "^22.4.6",
+    "tsc-node": "^0.0.3",
     "tslint": "^5.10.0"
   }
 }
